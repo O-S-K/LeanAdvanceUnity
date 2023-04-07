@@ -3,16 +3,17 @@ using UnityEngine;
 public class LinearMove : IMoveAble
 {
     private readonly float travelSpeed;
-    private readonly Rigidbody rigidbody;
+    private readonly Transform transform;
 
-    public LinearMove(Rigidbody rigidbody, float travelSpeed)
+    public LinearMove(Transform transform, float travelSpeed)
     {
         this.travelSpeed = travelSpeed;
-        this.rigidbody = rigidbody;
+        this.transform = transform;
     }
 
-    public void Move()
+    public void Move(Vector3 direction)
     {
-        rigidbody.velocity = rigidbody.transform.forward * travelSpeed * Time.fixedDeltaTime;
+        float moveSpeed = travelSpeed * Time.deltaTime;
+        transform.Translate(direction * moveSpeed);
     }
 }

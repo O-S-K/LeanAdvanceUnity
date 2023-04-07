@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AIInputController : IShipInput
 {
-    public float Rotation { get; private set; }
+    public float Horizontal { get; private set; }
 
     public float Vetical { get; private set; }
 
@@ -18,7 +18,7 @@ public class AIInputController : IShipInput
         }
         else
         {
-            Rotation = Random.Range(-1, 1);
+            Horizontal = Random.Range(-1, 1);
             Vetical = Random.Range(0, 3);
             timeMoveUpdate = Random.Range(1, 3);
         }

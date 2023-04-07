@@ -5,7 +5,7 @@ public class AccelerateMove : IMoveAble
     private readonly Rigidbody rigidbody;
     private readonly float accelerateSpeed;
     private float currentSpeed;
- 
+
     public AccelerateMove(Rigidbody rigidbody, float accelerateSpeed)
     {
         this.currentSpeed = 0;
@@ -13,9 +13,10 @@ public class AccelerateMove : IMoveAble
         this.accelerateSpeed = accelerateSpeed;
     }
 
-    public void Move()
+    public void Move(Vector3 direction)
     {
-        currentSpeed += accelerateSpeed;
-        rigidbody.velocity = rigidbody.transform.forward * currentSpeed * Time.fixedDeltaTime;
+        currentSpeed += accelerateSpeed * Time.fixedDeltaTime;
+        direction.y = 0;
+        rigidbody.AddForce(direction.normalized * currentSpeed, ForceMode.Acceleration);
     }
 }

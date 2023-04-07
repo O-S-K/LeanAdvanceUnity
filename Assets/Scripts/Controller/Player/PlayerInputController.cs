@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerInputController : IShipInput
 {
-    public float Rotation { get; private set; }
+    public float Horizontal { get; private set; }
 
     public float Vetical { get; private set; }
 
@@ -11,7 +11,7 @@ public class PlayerInputController : IShipInput
 
     public void ReadInput()
     {
-        Rotation = Input.GetAxis("Horizontal");
+        Horizontal = Input.GetAxis("Horizontal");
         Vetical = Input.GetAxis("Vertical");
         InputAttack = Input.GetMouseButtonDown(0);
     }

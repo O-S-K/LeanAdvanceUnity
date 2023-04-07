@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipWeaponSystem : MonoBehaviour
 {
-    [SerializeField] private Transform pointSpawnWeapon;
+    [SerializeField] 
+    private Transform pointSpawnWeapon;
     private WeaponBase equippedWeapon;
 
     public void EquipWeapon(WeaponBase newWeapon)
@@ -13,7 +12,7 @@ public class ShipWeaponSystem : MonoBehaviour
         {
             Destroy(equippedWeapon.gameObject);
         }
-
+         
         equippedWeapon = Instantiate(newWeapon, pointSpawnWeapon.position, pointSpawnWeapon.rotation);
         equippedWeapon.InitWeapon();
         equippedWeapon.transform.SetParent(pointSpawnWeapon);

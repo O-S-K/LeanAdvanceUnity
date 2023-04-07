@@ -2,8 +2,7 @@ public class GunStraight : WeaponBase
 {
     public override void Shoot()
     {
-        BulletCtrl _bullet = Instantiate(bullet, PointSpawnBullet.position, PointSpawnBullet.rotation);
-        _bullet.SetMoveBehavior(new LinearMove(_bullet.RigbodyBullet, speedBullet));
-        Destroy(_bullet.gameObject, 10);
+        var _bullet = CreateController.Instance.CreateBullet(PointSpawnBullet, PointSpawnBullet);
+        _bullet.SetMoveBehavior(new LinearMove(_bullet.transform, speedBullet), bullet.transform.forward);
     }
 }

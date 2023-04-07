@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShipMotor
 {
+    private readonly IMoveAble moveAble;
     private readonly IShipInput shipInput;
     private readonly IShipAttack shipAttack;
 
@@ -11,23 +12,25 @@ public class ShipMotor
     private readonly ShipSettingSO shipSetting;
     private readonly ShipWeaponSystem shipWeapon;
 
-    public ShipMotor(IShipInput shipInput, IShipAttack shipAttack, Transform transformToMove, ShipSettingSO shipSetting, ShipWeaponSystem shipWeapon)
+    public ShipMotor(IShipInput shipInput, IShipAttack shipAttack, IMoveAble moveAble, Transform transformToMove, ShipSettingSO shipSetting, ShipWeaponSystem shipWeapon)
     {
         this.shipInput = shipInput;
         this.shipAttack = shipAttack;
+        this.moveAble = moveAble;
         this.transformToMove = transformToMove;
         this.shipSetting = shipSetting;
         this.shipWeapon = shipWeapon;
     }
 
+
     public void Tick()
     {
-        ShipRotation();
-        ShipMovement();
-        ShipAttack();
+        Rotation();
+        Move();
+        Attack();
     }
 
-    private void ShipAttack()
+    private void Attack()
     {
         if(shipAttack.GetInput())
         {
@@ -35,15 +38,15 @@ public class ShipMotor
         }
     }
 
-    private void ShipMovement()
-    {
-        float moveSpeed = shipInput.Vetical * shipSetting.MoveSpeed * Time.deltaTime;
-        transformToMove.position += transformToMove.forward * moveSpeed;
-    }
 
-    private void ShipRotation()
+    public void Move()
     {
-        float timeTurn = shipInput.Rotation * shipSetting.TurnSpeed * Time.deltaTime;
+        moveAble.Move(new Vector3(shipInput.Horizontal, 0, shipInput.Vetical));
+    }
+    private void Rotation()
+    {
+        float timeTurn = shipInput.Horizontal * shipSetting.TurnSpeed * Time.deltaTime;
         transformToMove.Rotate(Vector3.up * timeTurn);
     }
+
 }

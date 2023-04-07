@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dffc1868d36188e438a606d2b56c77ca, type: 3}
   m_Name: WeaponStraight
   m_EditorClassIdentifier: 
-  speedBullet: 1000
+  speedBullet: 30
   fireRate: 0.2
   bullet: {fileID: 4132555910065155938, guid: 5dc1e84b737e06f43bf0072d4d961bb6, type: 3}
