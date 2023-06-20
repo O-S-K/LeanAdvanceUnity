@@ -11,7 +11,7 @@ public class BulletCtrl : MonoBehaviour
     private IMoveAble moveBehavior;
     private Vector3 direction;
 
-    private void OnEnable()
+    public void Init()
     {
         Invoke(nameof(OnDeactive), 3);
     }
@@ -23,10 +23,13 @@ public class BulletCtrl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision -> " + other.name);
-        //gameObject.SetActive(false);
-        //TODO check for damageable
-        //Destroy(gameObject);
+        if (TryGetComponent(out Ship ship))
+        {
+            if (ship != null)
+            {
+                gameObject.SetActive(false);
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -34,7 +37,7 @@ public class BulletCtrl : MonoBehaviour
         moveBehavior.Move(direction);
     }
 
-    public void SetMoveBehavior(IMoveAble newMoveBehavior,Vector3 direction)
+    public void SetMoveBehavior(IMoveAble newMoveBehavior, Vector3 direction)
     {
         Debug.Log("IMoveAble -> " + newMoveBehavior);
         moveBehavior = newMoveBehavior;

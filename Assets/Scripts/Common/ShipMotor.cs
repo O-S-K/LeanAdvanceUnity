@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipMotor
-{
+{ 
     private readonly IMoveAble moveAble;
     private readonly IShipInput shipInput;
     private readonly IShipAttack shipAttack;

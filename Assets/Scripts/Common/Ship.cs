@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
+    public int ID => id;
+    private int id;
+        
     [SerializeField] private ShipSettingSO shipSetting;
     [SerializeField] private ShipWeaponSystem shipWeapon;
 
@@ -13,8 +16,10 @@ public class Ship : MonoBehaviour
 
     private ShipMotor shipMoto;
 
+
     private void Awake()
     {
+        id = shipSetting.ID;
         shipInput = shipSetting.IsAI ? new AIInputController() : new PlayerInputController();
         shipAttack = shipSetting.IsAI ? new AIAttackController() : new PlayerAttackController();
         shipMove = new LinearMove(transform, shipSetting.MoveSpeed);

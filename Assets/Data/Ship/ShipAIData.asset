@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe862bb725dca414c93b9575a880b4f1, type: 3}
   m_Name: ShipAIData
   m_EditorClassIdentifier: 
+  id: 1
   turnSpeed: 100
   moveSpeed: 2
   isAI: 1
